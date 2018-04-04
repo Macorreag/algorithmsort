@@ -1,37 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html >
 
   <head>
 
     <meta charset="utf-8">
     <title>Sort Codes</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>    <!--Llamada de la libreria-->
+
     <link rel="stylesheet" type="text/css" href="css/styleChart.css">
-    <script src="https://d3js.org/d3.v5.js"></script>
-    <script src="js/charts.js"></script>
+
+
 
   </head>
-
-  <!--<body onload="graficar()">-->
-
-  <!-- <body  onload="seleccionar()" > -->
-
   <body>
-    <!-- <div class="barras"></div> -->
-    <div>Usando</div>
-    <div>Libreria</div>
-    <div>D3</div>
-
-    <hr>
-    <button onclick="seleccionarBloque()">Seleccionar bloque</button>
-    <div class="bloque">
-      <div>El </div>
-      <div>bloque</div>
-      <div>numero 2</div>
-
-    </div>
-    <button onclick="seleccionarBloqueB()">Seleccionar bloque</button>
+    <h1>Algorithm Sort</h1>
 
 
+    <svg class="test">
+
+    </svg>
+
+    <button type="button" name="button" onclick="arrac()">el boton</button>
   </body>
-
+  <script src="js/bars.js"></script>
 </html>

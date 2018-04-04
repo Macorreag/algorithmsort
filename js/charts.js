@@ -4,7 +4,7 @@ var x = d3.scaleLinear()
   .domain([0, d3.max(datos)])
   .range([0, 150])
 
-function graficar() {
+function graficar23() {
   d3.select(".barras") /*Toma la clase barras */
     .selectAll("div")
     .data(datos)
@@ -36,4 +36,11 @@ function seleccionarBloqueB() {
 function seleccionar() {
   d3.selectAll('div') /*Selecciona varios elementos en el DOM*/
     .style("background-color", "green");
+}
+
+
+function seleccionarBloqueC() {
+  d3.select('.bloque')
+    .selectAll('div')
+    .style('background-color', 'blue');
 }

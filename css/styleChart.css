@@ -1,3 +1,25 @@
+
+
+body{
+  background-color: white;
+}
+.bar {
+  fill: steelblue;
+  transition: transform 1s;
+
+}
+
+
+
+.test {
+  /*background-color:black;
+  */
+  height : 400px;
+  width :300px;
+
+}
+
+
 .barras div {
   font-size: 10px;
   background-color: green;
