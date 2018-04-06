@@ -14,9 +14,6 @@ class BarChart {
       this.domArray[i] = i;
     }
 
-    console.log(this.domArray);
-
-
     /*Ancho de las barras determinada por escala va desde 0[CERO TEMPORAL EL MINIMO DEBE CAMBIAR] hasta ---*/
 
   }
@@ -43,52 +40,52 @@ class BarChart {
     var myElements =
         document.querySelectorAll( this._nameClass +  ' .bar');
 
-    /*Cambio en el arreglo de datos*/
-    var aux = this._data[positionA];
 
-    this._data[positionA] = this._data[positionB];
-    this._data[positionB] = aux;
+    var superiorAux = positionA;      /*Posicion en el dom del elemento mas arriba visualmente*/
+    var inferiorAux = positionB;      /*Posicion en el dom del elemento mas abajo visualmente*/
 
+    if( positionA > positionB){
+          superiorAux = positionB ;
+          inferiorAux = positionA ;
+    }
 
     /*Transicion en el DOM*/
 
 
-    var superior = this.domArray[positionA];
-    var inferior = this.domArray[positionB];
-
-    if( this.domArray[positionA] > this.domArray[positionB]){
-      superior = positionB ;
-      inferior = positionA ;
-    }
-
-    var temporal = this.domArray[positionA];
+    var superior = this.domArray[superiorAux];      /*Posicion en el dom del elemento mas arriba visualmente*/
+    var inferior = this.domArray[inferiorAux];      /*Posicion en el dom del elemento mas abajo visualmente*/
 
 
 
+    var positionDomSup = this.varWidth * superiorAux;   /*Posicion de la barra ubicada mas arriba*/
+    var positionDomInf = this.varWidth * inferiorAux;  /*Posicion de la barra ubicada mas arriba*/
+    var countToUp = this.varWidth * inferiorAux;   /*Contador para subir el elemento que esta en la parte inferior del DOM*/
+    var countToDown = this.varWidth * superiorAux; /*Contador para bajar el elemento que esta en la parte superior del DOM*/
 
-    var positionDomSup = this.varWidth * (superior);   /*Posicion de la barra ubicada mas arriba*/
-    var positionDomInf = this.varWidth * (inferior);  /*Posicion de la barra ubicada mas arriba*/
-    var countToUp = this.varWidth * (inferior);   /*Contador para subir el elemento que esta en la parte inferior del DOM*/
-    var countToDown = this.varWidth * (superior); /*Contador para bajar el elemento que esta en la parte superior del DOM*/
+    console.log("superior" + superior + "inferior" + inferior);
 
   var id = setInterval(frame,5);
     function frame() {
-      if (countToUp <= positionDomSup) {
-        //clearInterval(id);
+      if (countToDown >= positionDomInf) {
+        clearInterval(id);
         return 1;
       } else {
         countToUp--;  /*Se resta para subirlo en el DOM*/
         countToDown++;  /*Se suma para bajarlo en el DOM*/
-        myElements[superior].style.transform = "translate(0,"+countToDown+"px)";
-        myElements[inferior].style.transform = "translate(0,"+countToUp+"px)";
+        myElements[superior].style.transform = "translate(0," + countToDown + "px)";
+        myElements[inferior].style.transform = "translate(0," + countToUp + "px)";
+
       }
     }
 
 
 
-    /*Swap en DOM con arregloAuxiliar*/
-    this.domArray[positionA] = this.domArray[positionB];
-    this.domArray[positionB] = temporal;
+        var temporal = this.domArray[positionA];
+        /*Swap en DOM con arregloAuxiliar*/
+        this.domArray[positionA] = this.domArray[positionB];
+        this.domArray[positionB] = temporal;
+
+
 
     //myElements[superior].style.transition = "transform 0.5s";
     //myElements[inferior].style.transition = "transform 0.5s";
@@ -118,6 +115,11 @@ class BarChart {
       .setAttribute("width",temp);
       myElements[positionB].style.fill = "red";
         */
+
+    /*Cambio en el arreglo de datos*/
+        var aux = this._data[positionA];
+        this._data[positionA] = this._data[positionB];
+        this._data[positionB] = aux;
   }
 
   comparison(positionA , positionB ){
@@ -162,7 +164,7 @@ class BarChart {
 
 }
 
-var data = [1,2,3,4,5,6];
+var data = [1,2,3];
 barrasTest =  new BarChart(data,".test",300,400);
 barrasTest.graficar();
 
@@ -171,13 +173,19 @@ barrasTest.graficar();
 //barrasTest.swap(1,27);
 var a = 4;
 if (a == 1){
-barrasTest.swap(3,0);
+barrasTest.swap(0,3);
 a = 0;
 }
 function arrac(){
+  barrasTest.swap(0,1);
+}
+function ardio(){
   barrasTest.swap(0,3);
 }
-barrasTest.swap(4,5);
+barrasTest.swap(1,2);
+
+
+
 
 
 
