@@ -1,5 +1,10 @@
 
 
+function bigImg(){
+  var x = document.getElementsByClassName("bar");
+  x.style.backgroundColor = "green";
+}
+
 
 class BarChart {
   constructor(data,nameClass,width,height) {
@@ -63,6 +68,7 @@ class BarChart {
     var countToDown = this.varWidth * superiorAux; /*Contador para bajar el elemento que esta en la parte superior del DOM*/
 
     console.log("superior" + superior + "inferior" + inferior);
+
 
   var id = setInterval(frame,5);
     function frame() {
@@ -178,6 +184,8 @@ a = 0;
 }
 function arrac(){
   barrasTest.swap(0,1);
+  barrasTest.swap(0,2);
+  barrasTest.swap(1,0);
 }
 function ardio(){
   barrasTest.swap(0,3);
