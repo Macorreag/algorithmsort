@@ -5,7 +5,8 @@ body{
 }
 .bar {
   fill: steelblue;
-  transition: transform 10s;
+  
+  transition: transform 1s;
 
 }
 

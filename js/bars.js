@@ -42,90 +42,91 @@ class BarChart {
   swap( positionA , positionB ) {
     /*Este metodo intercambiara datos en el arreglo pero ademas evidenciara el cambio
   mediante colores y trancision  en el DOM*/
-    var myElements =
-        document.querySelectorAll( this._nameClass +  ' .bar');
-
-
-    var superiorAux = positionA;      /*Posicion en el dom del elemento mas arriba visualmente*/
-    var inferiorAux = positionB;      /*Posicion en el dom del elemento mas abajo visualmente*/
-
-    if( positionA > positionB){
-          superiorAux = positionB ;
-          inferiorAux = positionA ;
-    }
-
-    /*Transicion en el DOM*/
-
-
-    var superior = this.domArray[superiorAux];      /*Posicion en el dom del elemento mas arriba visualmente*/
-    var inferior = this.domArray[inferiorAux];      /*Posicion en el dom del elemento mas abajo visualmente*/
 
 
 
-    var positionDomSup = this.varWidth * superiorAux;   /*Posicion de la barra ubicada mas arriba*/
-    var positionDomInf = this.varWidth * inferiorAux;  /*Posicion de la barra ubicada mas arriba*/
-    var countToUp = this.varWidth * inferiorAux;   /*Contador para subir el elemento que esta en la parte inferior del DOM*/
-    var countToDown = this.varWidth * superiorAux; /*Contador para bajar el elemento que esta en la parte superior del DOM*/
-
-    console.log("superior" + superior + "inferior" + inferior);
-
-    myElements[superior].style.transform = "translate(0," + positionDomInf + "px)";
-    myElements[inferior].style.transform = "translate(0," + positionDomSup + "px)";
-  /*var id = setInterval(frame,5);
-    function frame() {
-      if (countToDown >= positionDomInf) {
-        clearInterval(id);
-        return 1;
-      } else {
-        countToUp--;  /*Se resta para subirlo en el DOM*/
-    /*    countToDown++;  /*Se suma para bajarlo en el DOM*/
+  return new Promise(resolve => {
+    setTimeout(() => {
+      var myElements =
+          document.querySelectorAll( this._nameClass +  ' .bar');
 
 
-      /*}
-    }*/
+      var superiorAux = positionA;      /*Posicion en el dom del elemento mas arriba visualmente*/
+      var inferiorAux = positionB;      /*Posicion en el dom del elemento mas abajo visualmente*/
+
+      if( positionA > positionB){
+            superiorAux = positionB ;
+            inferiorAux = positionA ;
+      }
+
+      /*Transicion en el DOM*/
+
+
+      var superior = this.domArray[superiorAux];      /*Posicion en el dom del elemento mas arriba visualmente*/
+      var inferior = this.domArray[inferiorAux];      /*Posicion en el dom del elemento mas abajo visualmente*/
 
 
 
-        var temporal = this.domArray[positionA];
-        /*Swap en DOM con arregloAuxiliar*/
-        this.domArray[positionA] = this.domArray[positionB];
-        this.domArray[positionB] = temporal;
+      var positionDomSup = this.varWidth * superiorAux;   /*Posicion de la barra ubicada mas arriba*/
+      var positionDomInf = this.varWidth * inferiorAux;  /*Posicion de la barra ubicada mas arriba*/
+      var countToUp = this.varWidth * inferiorAux;   /*Contador para subir el elemento que esta en la parte inferior del DOM*/
+      var countToDown = this.varWidth * superiorAux; /*Contador para bajar el elemento que esta en la parte superior del DOM*/
+
+      console.log("superior" + superior + "inferior" + inferior);
+      myElements[superior].style.transform = "translate(0," + positionDomInf + "px)";
+      myElements[inferior].style.transform = "translate(0," + positionDomSup + "px)";
 
 
 
-    //myElements[superior].style.transition = "transform 0.5s";
-    //myElements[inferior].style.transition = "transform 0.5s";
+              var temporal = this.domArray[positionA];
+              /*Swap en DOM con arregloAuxiliar*/
+              this.domArray[positionA] = this.domArray[positionB];
+              this.domArray[positionB] = temporal;
 
 
-    //myElements[superior].style.fill = "blue";
-    //myElements[inferior].style.fill = "blue";
+
+          //myElements[superior].style.transition = "transform 0.5s";
+          //myElements[inferior].style.transition = "transform 0.5s";
+
+
+          //myElements[superior].style.fill = "blue";
+          //myElements[inferior].style.fill = "blue";
 
 
 
 
 
-    /*myElements[positionA].
-      setAttribute("width",myElements[positionB].width.animVal.value);*/
-    //myElements[positionA].style.transform = "translateY(" + 15 + ")";
-    //myElements[positionA].style.transform = "translateY(85px)";
+          /*myElements[positionA].
+            setAttribute("width",myElements[positionB].width.animVal.value);*/
+          //myElements[positionA].style.transform = "translateY(" + 15 + ")";
+          //myElements[positionA].style.transform = "translateY(85px)";
 
 
-    //myElements[positionA].style.transition = "fill 3s";
+          //myElements[positionA].style.transition = "fill 3s";
 
 
 
 
-    /*
+          /*
 
-      myElements[positionB]
-      .setAttribute("width",temp);
-      myElements[positionB].style.fill = "red";
-        */
+            myElements[positionB]
+            .setAttribute("width",temp);
+            myElements[positionB].style.fill = "red";
+              */
 
-    /*Cambio en el arreglo de datos*/
-        var aux = this._data[positionA];
-        this._data[positionA] = this._data[positionB];
-        this._data[positionB] = aux;
+          /*Cambio en el arreglo de datos*/
+              var aux = this._data[positionA];
+              this._data[positionA] = this._data[positionB];
+              this._data[positionB] = aux;
+
+      resolve('resolved');
+    }, 1000);
+  });
+
+
+
+
+
   }
 
   comparison(positionA , positionB ){
@@ -170,26 +171,28 @@ class BarChart {
 
 }
 
-var data = [1,2,3];
+var data = [3,1,2,7,8,9,5,2,7,6];
 barrasTest =  new BarChart(data,".test",300,400);
 barrasTest.graficar();
 
 
 //barrasTest.comparison(1,2);
 //barrasTest.swap(1,27);
-var a = 4;
-if (a == 1){
-barrasTest.swap(0,3);
-a = 0;
-}
+var a = 1;
+
 function arrac(){
   barrasTest.swap(0,1);
+  a = 0;
+
 
 }
 function ardio(){
+  while(a != 1){
   barrasTest.swap(0,2);
+  a = 1;
+  }
 }
-barrasTest.swap(1,2);
+//barrasTest.swap(1,2);
 
 
 
@@ -216,11 +219,12 @@ barrasTest.swap(1,2);
 
 
 
-function bubble(obj) {//You need Two Loops for Bubble sort
-  for (var i = 0; i < obj.data.length; i++) {//Outer Loop
-   for(var j=0; j < obj.data.length - 1; j++){//Inner Loop
-    if (obj.data[j] > obj.data[j + 1]) {
-      obj.swap( j , j+1 );
+async function bubble() {//You need Two Loops for Bubble sort
+
+  for (var i = 0; i < barrasTest.data.length; i++) {//Outer Loop
+    for(var j=0; j < (barrasTest.data.length  - i ); j++){//Inner Loop
+    if (barrasTest.data[j] > barrasTest.data[j + 1]) {
+      var y = await barrasTest.swap( j+1 , j );
      }
    }
   }
