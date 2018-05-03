@@ -69,20 +69,20 @@ class BarChart {
 
     console.log("superior" + superior + "inferior" + inferior);
 
-
-  var id = setInterval(frame,5);
+    myElements[superior].style.transform = "translate(0," + positionDomInf + "px)";
+    myElements[inferior].style.transform = "translate(0," + positionDomSup + "px)";
+  /*var id = setInterval(frame,5);
     function frame() {
       if (countToDown >= positionDomInf) {
         clearInterval(id);
         return 1;
       } else {
         countToUp--;  /*Se resta para subirlo en el DOM*/
-        countToDown++;  /*Se suma para bajarlo en el DOM*/
-        myElements[superior].style.transform = "translate(0," + countToDown + "px)";
-        myElements[inferior].style.transform = "translate(0," + countToUp + "px)";
+    /*    countToDown++;  /*Se suma para bajarlo en el DOM*/
 
-      }
-    }
+
+      /*}
+    }*/
 
 
 
@@ -184,11 +184,10 @@ a = 0;
 }
 function arrac(){
   barrasTest.swap(0,1);
-  barrasTest.swap(0,2);
-  barrasTest.swap(1,0);
+
 }
 function ardio(){
-  barrasTest.swap(0,3);
+  barrasTest.swap(0,2);
 }
 barrasTest.swap(1,2);
 
